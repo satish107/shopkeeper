@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+root = lambda *x: os.path.join(BASE_DIR, *x)
+sys.path.insert(0, root('shopkeeper/backend'))
+# sys.path.insert(0, os.path.join(BASE_DIR, 'shopkeeper/backend'))
+# print(sys.path)
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,9 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'users',
-    'landing',
 ]
+
+PROJECT_APPS = [
+    'users',
+    # 'landing',
+]
+
+INSTALLED_APPS += PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +67,7 @@ ROOT_URLCONF = 'shopkeeper.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "shopkeeper/frontend/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,3 +133,5 @@ USE_TZ = True
 STATIC_URL = '/assets/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 # print(STATIC_ROOT)
+
+AUTH_USER_MODEL = 'users.UserProfile'

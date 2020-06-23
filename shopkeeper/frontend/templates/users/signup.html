@@ -1,0 +1,32 @@
+<div class="modal fade" id="myModal_signup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+        	<h3>Header</h3>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        	<form action="{% url 'users:register' %}" method="POST">
+        		{% csrf_token %}
+	          <label for="id_email">Email</label>
+	          <input type="text" name="email" id="id_email">
+	          <label for="id_password1">Password1</label>
+	          <input type="password" name="password1" id="id_password1">
+	          <label for="id_password2">Password2</label>
+	          <input type="password" name="password2" id="id_password2">
+	          <input type="submit" name="submit" value="Sign Up">
+        	</form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+</div>

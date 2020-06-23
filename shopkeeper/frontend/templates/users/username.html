@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>Registeration form</h1>
-	<form action="{% url 'users:register_user' %}" method = "POST">
+	<form action="{% url 'users:register' %}" method = "POST">
 		{% csrf_token %}
 		<tr>
 			<th>

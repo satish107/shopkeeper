@@ -32,3 +32,15 @@ class RegistrationForm(forms.ModelForm):
 		return user
 
 
+class AuthenticationForm(forms.Form):
+	email = forms.EmailField(widget = forms.TextInput, label = 'email')
+	password = forms.CharField(widget = forms.PasswordInput, label = 'password')
+
+	class Meta:
+		fields = ('email', 'password1')
+
+	def clean_email(self):
+		email = self.cleaned_data.get('email')
+		if email and not UserProfile.objects.filter(email = email).exists():
+			raise ValidationError('Email Id doesnot exist')
+		return self.cleaned_data

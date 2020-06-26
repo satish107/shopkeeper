@@ -1,0 +1,23 @@
+{% extends 'landing/main/base.html' %}
+{% block content %}
+	<form method = "POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<label>Name:</label>
+		<input type="text" name="name"><br>
+		<label>address:</label>
+		<input type="text" name="address"><br>
+		<label>Image:</label>
+		<input type="file" name="image" accept="image/*" id="id_image"><br>
+		<label for="id_description">Description:</label><br>
+		<textarea name="description" cols="40" rows="10" id="id_description"></textarea><br>
+		<label for="id_category">Category:</label><br>
+		<select name="category" id="id_category" multiple>
+		{% for category in shop_categories %}
+		  <option value="{{ category.id }}">{{ category.name }}</option>
+		{% endfor %}
+		</select><br>
+		<label for="id_opening_date">Opening date:</label><br>
+		<!-- <input type="text" name="opening_date" id="id_opening_date"><br><br> -->
+		<input type="submit" name="submit" value="Submit">
+	</form>
+{% endblock %}

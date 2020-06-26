@@ -19,7 +19,7 @@ def register(request):
 	context = {
 		'form':form
 	}
-	return render(request, 'users/username.html', context)
+	return render(request, 'users/base.html', context)
 
 
 def login_user(request):

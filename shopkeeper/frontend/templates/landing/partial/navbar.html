@@ -1,6 +1,5 @@
 <nav class="navbar navbar-default navbar-inverse" role="navigation">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
@@ -8,59 +7,59 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Login dropdown</a>
+      <a class="navbar-brand" href="{% url 'shop:shop_list' %}">Home</a>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <!-- <li class="active"><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li> -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Category <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
+            {% for shop_category in shop_categories %}
+            <li><a href="{% url 'shop:shop_list_category' shop_category.slug %}">{{ shop_category.name }}</a></li>
+            {% endfor %}
+            <!-- <li class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">One more separated link</a></li> -->
           </ul>
         </li>
+        {% if request.user.is_authenticated %}
+          <li><a href="{% url 'shop:shop_create' %}">Create Shop</a></li>
+        {% else %}
+          <li><a href="#" data-toggle="modal" data-target="#myModal_login">Create Shop</a></li>
+        {% endif %}
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
-        
-		{% if user.is_authenticated %}
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+		    {% if user.is_authenticated %}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{ request.user }}</b> <span class="caret"></span></a>
-			<ul id="login-dp" class="dropdown-menu">
-				<li>
-					<div>
-						<a href="{% url 'users:logout_user' %}">Logout</a>
-					</div>
-					 
-				</li>
-			</ul>
+			  <ul id="login-dp" class="dropdown-menu">
+  				<li>
+  					<div>
+  						<a href="{% url 'users:logout_user' %}">Logout</a>
+  					</div>	 
+  				</li>
+			  </ul>
         </li>
         {% else %}
         <li>
-        <a href="#" data-toggle="modal" data-target="#myModal_login">Login</a>
+          <a href="#" data-toggle="modal" data-target="#myModal_login">Login</a>
         </li>
         {% include 'users/login.html' %}
 
-		  <li>
+		    <li>
         	<a href="#" data-toggle="modal" data-target="#myModal_signup">Sign Up</a>
         </li>
-		  {% include 'users/signup.html' %}
+		    {% include 'users/signup.html' %}
         {% endif %}
-
       </ul>
     </div>
   </div>

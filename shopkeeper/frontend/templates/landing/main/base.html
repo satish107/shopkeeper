@@ -58,6 +58,27 @@
 		        border-top:0 none;
 		    }
 		}
+		<style type="text/css">
+		* {
+			  box-sizing: border-box;
+			}
+
+			/* Create four equal columns that floats next to each other */
+			.col-sm-3 {
+			  float: left;
+			  width: 25%;
+			  padding: 10px;
+			  height: 300px; /* Should be removed. Only for demonstration */
+			}
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+		/*.col-sm-3 {
+			margin: 10px 10px;
+		}*/
+	</style>
 
 	</style>
 	<!-- Latest compiled and minified CSS -->
@@ -71,5 +92,8 @@
 </head>
 <body>
 	{% include 'landing/partial/navbar.html' %}
+	<div>
+		{% block content %}{% endblock %}
+	</div>
 </body>
 </html>

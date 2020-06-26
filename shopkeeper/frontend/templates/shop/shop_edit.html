@@ -1,0 +1,18 @@
+{% extends 'landing/main/base.html' %}
+<head>
+	<title></title>
+</head>
+{% block content %}
+	<form method = "POST">
+		{% csrf_token %}
+		<label for="id_name">Name:</label><br>
+		<input type="text" name="name" value="{{ shop_instance.name }}" maxlength="255" id="id_name"><br>
+		<label for="id_address">Address:</label><br>
+		<input type="text" name="address" value="{{ shop_instance.address }}" maxlength="255" id="id_address"><br>
+		<label for="id_image">Image:</label><br>
+			Currently: <a href="{{ shop_instance.image.url }}">{{ shop_instance.image.url }}</a><br>
+		<input type="file" name="image" accept="image/*" id="id_image"><br><br>
+		<input type="submit" name="submit" value="update">
+	</form>
+{% endblock %}
+</html>

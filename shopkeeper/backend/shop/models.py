@@ -52,3 +52,7 @@ class Shop(models.Model):
 	def get_absolute_url(self):
 		return reverse('shop:shop_detail', args = [str(self.slug)])
 
+
+# class ShopAddress(models.Model):
+	
+

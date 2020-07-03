@@ -8,18 +8,26 @@ from users.forms import RegistrationForm, AuthenticationForm
 def register(request):
 	if request.method == "POST":
 		form = RegistrationForm(request.POST)
+		print('before form')
 		if form.is_valid():
+			print('after form')
 			email = request.POST['email']
 			password1 = request.POST['password1']
-			user = form.save()
-			login(request, user)
-			return redirect('/')
+			print(email)
+			if UserProfile.objects.filter(email = email).exists():
+				print('email already exist')
+				return HttpResponse('email already exist')
+			else:
+				user = form.save()
+				login(request, user)
+				return redirect('/')
 	else:
 		form = RegistrationForm()
 	context = {
 		'form':form
 	}
-	return render(request, 'users/base.html', context)
+	# return render(request, 'users/base.html', context)
+	return HttpResponse('success')
 
 
 def login_user(request):
@@ -28,7 +36,10 @@ def login_user(request):
 		if form.is_valid():
 			email = request.POST['email']
 			password = request.POST['password']
+			print(password)
+			print(email)
 			user = authenticate(request, email = email, password = password)
+			print(user.password)
 			if user is not None:
 				login(request, user)
 				return redirect('/')

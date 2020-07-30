@@ -53,6 +53,14 @@ class Shop(models.Model):
 		return reverse('shop:shop_detail', args = [str(self.slug)])
 
 
-# class ShopAddress(models.Model):
+
+
+
+
+
+
+
+
+
 	
 

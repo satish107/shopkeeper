@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			<div>
+				<h2>Categories</h2><hr>
+				<h3><a href="{% url 'product:product_list' %}">All</a></h3>
+				{% for category in product_categories %}
+					<a href="{% url 'product:product_category_list' category.slug %}">{{ category.name }}</a><br>
+				{% endfor %}
+			</div>
+		</div>
+		{% for product in products %}
+		<div class="col-sm-3">
+			<div>
+				<a href=""><img src="{{ product.image.url }}" width="275" height="275"></a>
+			</div>
+		</div>
+		{% endfor %}
+		<p>Description: {{ shop_instance.description }}</p>
+	</div>
+
+</div>
+

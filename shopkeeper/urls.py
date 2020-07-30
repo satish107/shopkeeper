@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^users/', include('users.urls', namespace = 'users')),
     url(r'^landing/', include('landing.urls', namespace = 'landing')),
     url(r'^', include('shop.urls', namespace = 'shop')),
+    url(r'^product/', include('product.urls', namespace = 'product')),
     
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

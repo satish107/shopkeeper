@@ -1,9 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-{{ shop_instance.name }}
-</body>
-</html>
+{% extends 'landing/main/base.html' %}
+
+{% block content %}
+<style type="text/css">
+	h1, p {
+		color: #eee;
+	}
+</style>
+
+<div class="row" style="background-color: #282c3f">
+	<div class="col-sm-3">
+		<img src="{{ shop_instance.image.url }}" alt="{{ shop_instance.name }}" width="300" height="300">
+	</div>
+	<div class="col-sm-6">
+		<h1>{{ shop_instance.name }}</h1>
+		<p>Description: {{ shop_instance.description }}</p>
+		<p>Address: {{ shop_instance.address }}</p>
+		<p>Category: {{ shop_category }}</p>
+	</div>
+	<div class="col-sm-3">
+		<h1><a href="{% url 'product:product_list' %}">All Product</a></h1>
+	</div>
+</div>
+<div style="margin-top: 10px">
+	{% for product in products %}
+		{{ product.name }}<br>
+	{% endfor %}
+</div>
+
+{% endblock %}
+

@@ -1,11 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from .models import Shop, ShopCategory
-from .forms import ShopForm
 from django.contrib.auth.decorators import login_required
+from shop.models import Shop, ShopCategory
+from shop.forms import ShopForm
+from product.models import ProductCategory, Product
 
 # Create your views here.
-
-# def home()
 
 def shop_list(request, shop_category_slug = None):
 	shop_categories = ShopCategory.objects.all()
@@ -13,7 +12,6 @@ def shop_list(request, shop_category_slug = None):
 	if shop_category_slug != None:
 		shop_list = Shop.objects.filter(category__slug = shop_category_slug).order_by('-added_on')
 		shops_dict['shop_list'] = shop_list
-		# print(context)
 	else:
 		shop_list = Shop.objects.all().order_by('-added_on')
 		shops_dict['shop_list'] = shop_list
@@ -22,15 +20,22 @@ def shop_list(request, shop_category_slug = None):
 		"shop_categories":shop_categories,
 		"shops_dict":shops_dict,
 	}
-	# print(context)
 	
 	return render(request, 'shop/shop_list.html', context)
 
 
 def shop_detail(request, slug = None):
 	shop_instance = Shop.objects.filter(slug = slug).last()
+	shop_category = shop_instance.category.all().values_list('name', flat = True)
+	shop_category = ", ".join(shop_category)
+	products = Product.objects.all()
+	# if product_category_slug is not None:
+	# 	products = products.filter(slug = product_category_slug)
+
 	context = {
-		"shop_instance":shop_instance
+		"shop_instance":shop_instance,
+		"shop_category":shop_category,
+		"products":products
 	}
 	return render(request, 'shop/shop_detail.html', context)
 
@@ -44,13 +49,6 @@ def shop_create(request):
 		if form.is_valid():
 			shop = form.save(commit = False)
 			shop.owner = request.user
-			# shop.cleaned_data.get('owner')
-			# shop.cleaned_data.get('description')
-			# shop.cleaned_data.get('name')
-			# shop.cleaned_data.get('opening_date')
-			# shop.cleaned_data.get('category')
-
-
 			shop.save()
 			form.save_m2m()
 			return redirect('/')
@@ -83,15 +81,6 @@ def shop_edit(request, slug = None):
 		"shop_instance":shop_instance,
 	}
 	return render(request, 'shop/shop_edit.html', context)
-
-
-# def shop_category_list(request):
-# 	categories = ShopCategory.objects.all()
-# 	context = {
-# 		"categories":categories
-# 	}
-# 	return render(request, '')
-
 
 
 

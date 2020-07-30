@@ -52,6 +52,7 @@ PROJECT_APPS = [
     'landing',
     'shop',
     'mainsite',
+    'product',
 ]
 
 INSTALLED_APPS += PROJECT_APPS

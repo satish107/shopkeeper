@@ -87,5 +87,3 @@ def shop_edit(request, slug = None):
 
 
 
-
-

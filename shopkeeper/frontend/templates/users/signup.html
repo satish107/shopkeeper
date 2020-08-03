@@ -10,7 +10,7 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-        	<form action="{% url 'users:register' %}" method="POST">
+        	<form action="{% url 'register' %}" method="POST">
         		{% csrf_token %}
 	          <label for="id_email">Email</label><br>
 	          <input type="text" name="email" id="id_email"><br>

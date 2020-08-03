@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'rest_framework',
     # 'names',
     # 'mommy_model'
 ]
@@ -53,6 +54,7 @@ PROJECT_APPS = [
     'shop',
     'mainsite',
     'product',
+    'api',
 ]
 
 INSTALLED_APPS += PROJECT_APPS
@@ -67,7 +69,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'shopkeeper.urls'
+ROOT_URLCONF = 'shopkeeper.urls.base_urls'
 
 TEMPLATES = [
     {

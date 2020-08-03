@@ -3,9 +3,9 @@
 		<div class="col-sm-3">
 			<div>
 				<h2>Categories</h2><hr>
-				<h3><a href="{% url 'product:product_list' %}">All</a></h3>
+				<h3><a href="{% url 'product_list' %}">All</a></h3>
 				{% for category in product_categories %}
-					<a href="{% url 'product:product_category_list' category.slug %}">{{ category.name }}</a><br>
+					<a href="{% url 'product_category_list' category.slug %}">{{ category.name }}</a><br>
 				{% endfor %}
 			</div>
 		</div>

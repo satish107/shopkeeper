@@ -1,6 +1,7 @@
 *.log
 *.pot
 *.pyc
+.DS_Store
 __pycache__/
 shopkeeper/__pycache__/
 db.sqlite3

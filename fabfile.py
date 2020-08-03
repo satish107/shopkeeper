@@ -24,9 +24,6 @@ def production():
 		env.key_filename = 'shopkeeper.pem'
 	env.code_dir = code_dir_master
 
-# def service(name, action):
-# 	if name in ["nginx", "supervisor", "gunicorn"]:
-
 
 def deploy():
 	if env.host_string in roles['master']:
@@ -34,7 +31,7 @@ def deploy():
 		with cd(env.code_dir):
 			print(green("Pulling"))
 			run("git pull origin master")
-			
+
 	else:
 		print('no host string found')
 

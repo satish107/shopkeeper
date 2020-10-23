@@ -32,10 +32,13 @@ def shop_detail(request, slug = None):
 	# if product_category_slug is not None:
 	# 	products = products.filter(slug = product_category_slug)
 
+	shop_categories = ShopCategory.objects.all()
+
 	context = {
 		"shop_instance":shop_instance,
 		"shop_category":shop_category,
-		"products":products
+		"products":products,
+		"shop_categories":shop_categories
 	}
 	return render(request, 'shop/shop_detail.html', context)
 

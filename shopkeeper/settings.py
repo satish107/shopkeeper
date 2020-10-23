@@ -30,7 +30,7 @@ SECRET_KEY = 'qd6w03!k^h*7e=wtx5)g!wjd0=c9juw^yw$p(26qe#^*7nv*x@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['13.233.3.214', 'localhost']
+ALLOWED_HOSTS = ['65.0.130.220', 'localhost']
 
 
 # Application definition
@@ -148,3 +148,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'users.UserProfile'
+
+# REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'rest_framework.authentication.TokenAuthentication',
+#    ),
+#    'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAdminUser'
+#    ),
+# }

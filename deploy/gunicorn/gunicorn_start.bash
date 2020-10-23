@@ -1,8 +1,8 @@
 #!/bin/bash
 
 NAME="shopkeeper"
-DJANGODIR=/home/ubuntu/shopkeeper
-SOCKFILE=/home/ubuntu/shopenv/run/gunicorn.sock
+DJANGODIR=/home/ubuntu/main/shopkeeper
+SOCKFILE=/home/ubuntu/main/env/run/gunicorn.sock
 USER=ubuntu
 GROUP=ubuntu
 NUM_WORKERS=3

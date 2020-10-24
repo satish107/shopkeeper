@@ -10,7 +10,7 @@ else:
 	env.use_ssh_config = True
 
 roles = {
-	'master': ['13.233.3.214',]
+	'master': ['65.0.130.220',]
 }
 
 env.roledefs = roles

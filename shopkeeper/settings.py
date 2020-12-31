@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'rest_framework',
+    'django_jinja',
     # 'names',
     # 'mommy_model'
 ]
@@ -71,10 +72,32 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'shopkeeper.urls.base_urls'
 
+from django_jinja.builtins import DEFAULT_EXTENSIONS
 TEMPLATES = [
     {
+        'BACKEND': 'django_jinja.backend.Jinja2',
+        'DIRS': [os.path.join(BASE_DIR, 'shopkeeper/frontend/templates')],
+        'OPTIONS': {
+            "match_extension": ".jinja",
+            "context_processors": [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+
+            ],
+            'extensions': DEFAULT_EXTENSIONS
+        }
+    },
+    {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "shopkeeper/frontend/templates")],
+        'DIRS': [os.path.join(BASE_DIR, 'shopkeeper/frontend/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +108,24 @@ TEMPLATES = [
             ],
         },
     },
+    
 ]
+
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [os.path.join(BASE_DIR, "shopkeeper/frontend/templates")],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#             ],
+#         },
+#     },
+# ]
 
 WSGI_APPLICATION = 'shopkeeper.wsgi.application'
 

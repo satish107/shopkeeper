@@ -9,6 +9,8 @@ urlpatterns = [
 	url(r'^api/', include(router.urls)),
 	url(r'^api/api-auth/', include('rest_framework.urls', namespace = 'rest_framework')),
 	url(r'^api/shop-list/', api_view.ShopListView.as_view(), name = 'api.shop_list'),
-	url(r'^api/(?P<pk>\d+)/shop/', api_view.ShopDetailView.as_view(), name = 'api.shop_detail')
+	url(r'^api/(?P<pk>\d+)/shop/', api_view.ShopDetailView.as_view(), name = 'api.shop_detail'),
+
+	url(r'^api/users/', api_view.UsersApi.as_view(), name='api.user_list'),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

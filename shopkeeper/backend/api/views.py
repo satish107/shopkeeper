@@ -11,12 +11,12 @@ from rest_framework import status
 
 class ShopListView(APIView):
 
-	authentication_classes = (
-		authentication.TokenAuthentication,
-		authentication.SessionAuthentication
-	)
+	# authentication_classes = (
+	# 	authentication.TokenAuthentication,
+	# 	authentication.SessionAuthentication
+	# )
 
-	permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+	# permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 	def get(self, request, format = None):
 		shop_list = Shop.objects.all().order_by('-added_on')
@@ -55,8 +55,13 @@ class ShopDetailView(APIView):
 			return Response(serializer.data, status = status.HTTP_201_CREATED)
 		return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
-
-
+from users.models import UserProfile
+from api.serializers import UserProfileSerializer
+class UsersApi(APIView):
+	def get(self, request, format=None):
+		user_list = UserProfile.objects.all()
+		serializer = UserProfileSerializer(user_list, many=True)
+		return SuccessResponse(serializer.data)
 
 
 
